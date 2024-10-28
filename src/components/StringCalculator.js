@@ -5,6 +5,7 @@ import calculateString from '../utils/calculateString';
 const StringCalculator = () => {
     const [input, setInput] = useState('');
     const [result, setResult] = useState(null);
+    const [error, setError] = useState(null);
 
 
     const handleChange = (event) => {
@@ -14,9 +15,14 @@ const StringCalculator = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-       const result = calculateString(input)
-       setResult(result)
-       
+        try {
+            const sum = calculateString(input);
+            setResult(sum);
+            setError(null);
+        } catch (e) {
+            setResult(null);
+            setError(e.message);
+        }
     };
 
     return (
@@ -33,6 +39,7 @@ const StringCalculator = () => {
                 <button type="submit">Calculate</button>
             </form>
             {result !== null && <p>Result: {result}</p>}
+            {error && <p style={{color: 'red'}}>Error: {error}</p>}
         </div>
     );
 };
