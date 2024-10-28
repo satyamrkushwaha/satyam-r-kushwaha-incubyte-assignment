@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import calculateString from '../utils/calculateString';
 
-
 const StringCalculator = () => {
     const [input, setInput] = useState('');
     const [result, setResult] = useState(null);
     const [error, setError] = useState(null);
 
-
     const handleChange = (event) => {
-        setInput(event.target.value);
-        console.log(event.target.value);
+        const value = event.target.value;
+        setInput(value);
+        if (value === '') {
+            setResult(null);
+            setError(null);
+        }
     };
 
     const handleSubmit = (event) => {
@@ -26,7 +28,7 @@ const StringCalculator = () => {
     };
 
     return (
-        <div>
+        <div className='string-calculator-container'>
             <form onSubmit={handleSubmit}>
                 <textarea
                     value={input}
@@ -39,7 +41,7 @@ const StringCalculator = () => {
                 <button type="submit">Calculate</button>
             </form>
             {result !== null && <p>Result: {result}</p>}
-            {error && <p style={{color: 'red'}}>Error: {error}</p>}
+            {error && <p style={{color: 'red', fontsize: '0.5rem'}}>Error: {error}</p>}
         </div>
     );
 };
