@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import calculateString from '../utils/calculateString';
 
 
 const StringCalculator = () => {
@@ -13,6 +14,8 @@ const StringCalculator = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+       const result = calculateString(input)
+       setResult(result)
        
     };
 
