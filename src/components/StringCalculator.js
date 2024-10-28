@@ -41,7 +41,7 @@ const StringCalculator = () => {
                 <button type="submit">Calculate</button>
             </form>
             {result !== null && <p>Result: {result}</p>}
-            {error && <p style={{color: 'red', fontsize: '0.5rem'}}>Error: {error}</p>}
+            {error && <p className='error'>Error: {error}</p>}
         </div>
     );
 };
